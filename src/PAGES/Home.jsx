@@ -1,5 +1,6 @@
 import React from "react";
 import all_product from "../assets/all_product";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -36,11 +37,13 @@ const Home = () => {
         className="max-w-xs bg-white shadow-md overflow-hidden hover:shadow-xl transition duration-300"
       >
         <div className="p-4">
-          <img
-            src={item.image}
-            alt={item.name}
-            className="w-full h-60 object-cover  mb-4"
-          />
+           <Link to={`/product/${item.id || index}`}>
+                                <img
+                                  src={item.image}
+                                  alt={item.name}
+                                  className="w-full h-60 object-cover rounded-t-2xl"
+                                />
+                              </Link>
           <h3 className="text-lg font-semibold text-gray-800">{item.name}</h3>
           
           {/* Row with new price, old price, and button */}

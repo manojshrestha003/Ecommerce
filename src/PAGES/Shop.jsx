@@ -1,5 +1,6 @@
 import React from 'react'
 import all_product from '../assets/all_product'
+import { Link } from 'react-router-dom'
 
 const Shop = () => {
   return (
@@ -30,11 +31,13 @@ const Shop = () => {
               key={index}
               className="bg-white rounded-2xl shadow-md hover:shadow-xl transition duration-300"
             >
-              <img
-                src={item.image}
-                alt={item.name}
-                className="w-full h-60object-cover rounded-t-2xl"
-              />
+               <Link to={`/product/${item.id || index}`}>
+                      <img
+                        src={item.image}
+                        alt={item.name}
+                        className="w-full h-60 object-cover rounded-t-2xl"
+                      />
+                    </Link>
               <div className="p-4">
                 <h3 className="text-lg font-semibold text-gray-800">{item.name}</h3>
                 <div className="flex items-center justify-between mt-3">

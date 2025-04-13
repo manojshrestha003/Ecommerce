@@ -9,6 +9,7 @@ import Cart from './PAGES/Cart';
 import Footer from './components/Footer';
 import Login from './PAGES/Login';
 import Signup from './PAGES/Signup';
+import ProductDetails from './components/ProductDetails';
 
 
 
@@ -28,6 +29,7 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/login" element={<Login/>} />
         <Route path="/signup" element={<Signup/>} />
+        <Route path="/product/:id" element={<ProductDetails/>} />
       </Routes>
       <Footer/>
     </div>

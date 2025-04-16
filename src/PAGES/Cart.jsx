@@ -1,14 +1,15 @@
 // src/PAGES/Cart.jsx
 import React, { useContext } from 'react';
 import { CartContext } from '../Context/CartContext'; 
+
 const Cart = () => {
   const { cartItems, removeFromCart } = useContext(CartContext);
 
- 
-  const totalPrice = cartItems.reduce((accumulator, item) => {
-    
-    return accumulator + (Number(item.new_price) * item.quantity);
-  }, 0);
+  
+  const totalPrice = cartItems.reduce(
+    (acc, item) => acc + parseFloat(item.new_price) * item.quantity,
+    0
+  );
 
   return (
     <div className="min-h-screen bg-blue-100 py-10">
@@ -50,7 +51,8 @@ const Cart = () => {
                     {/* Calculated Price based on Quantity */}
                     <td className="p-4 text-right">
                       <p className="font-semibold text-lg">
-                        ${ (Number(item.new_price) * item.quantity).toFixed(2) }
+                        $
+                        {(parseFloat(item.new_price) * item.quantity).toFixed(2)}
                       </p>
                     </td>
                     {/* Remove Button */}

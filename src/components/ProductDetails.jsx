@@ -1,14 +1,13 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import all_product from '../assets/all_product';
 import { CartContext } from '../Context/CartContext';
-import { useContext } from 'react';
 
 const ProductDetails = () => {
   const { id } = useParams();
-  const {addToCart} = useContext(CartContext)
+  const { addToCart } = useContext(CartContext);
+  const [quantity, setQuantity] = useState(1);
 
-  
   const product = all_product.find(
     (item, index) => (item.id || index).toString() === id
   );
@@ -20,6 +19,20 @@ const ProductDetails = () => {
       </div>
     );
   }
+
+  const handleDecrease = () => {
+    setQuantity((prevQuantity) => (prevQuantity > 1 ? prevQuantity - 1 : 1));
+  };
+
+  const handleIncrease = () => {
+    setQuantity((prevQuantity) => prevQuantity + 1);
+  };
+
+  // Optionally, update the addToCart to handle the quantity
+  const handleAddToCart = () => {
+    // Pass quantity along with product, adjust based on how your cart context expects the data
+    addToCart({ ...product, quantity });
+  };
 
   return (
     <div className="min-h-screen bg-blue-100 px-6 py-10">
@@ -53,8 +66,31 @@ const ProductDetails = () => {
                 ${product.old_price}
               </p>
             )}
+
+            {/* Quantity Controls */}
+            <div className="flex items-center mb-4">
+              <button
+                onClick={handleDecrease}
+                className="px-3 py-1 bg-gray-300 rounded-l hover:bg-gray-400 transition"
+              >
+                -
+              </button>
+              <span className="px-4 py-1 bg-white border-t border-b border-gray-300">
+                {quantity}
+              </span>
+              <button
+                onClick={handleIncrease}
+                className="px-3 py-1 bg-gray-300 rounded-r hover:bg-gray-400 transition"
+              >
+                +
+              </button>
+            </div>
+
             {/* Add to Cart Button */}
-            <button onClick={() => addToCart(product)} className="bg-green-600 text-white px-6 py-2 rounded-lg text-lg hover:bg-green-700 transition mb-4">
+            <button
+              onClick={handleAddToCart}
+              className="bg-green-600 text-white px-6 py-2 rounded-lg text-lg hover:bg-green-700 transition mb-4"
+            >
               Add to Cart
             </button>
             {/* Additional details can be added here */}

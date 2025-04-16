@@ -1,8 +1,11 @@
 import React from "react";
 import all_product from "../assets/all_product";
 import { Link } from "react-router-dom";
+import { CartContext } from "../Context/CartContext";
+import { useContext } from "react";
 
 const Home = () => {
+  const { addToCart } = useContext(CartContext);
   return (
     <div className="bg-gray-50 min-h-screen">
       
@@ -52,7 +55,7 @@ const Home = () => {
               <p className="text-gray-600 font-semibold">${item.new_price}</p>
               <p className="text-gray-400 line-through text-sm">${item.old_price}</p>
             </div>
-            <button className="bg-green-500 text-white px-4 py-2 rounded-xl hover:bg-green-700 transition text-sm">
+            <button onClick={()=>{addToCart(item)}} className="bg-green-500 text-white px-4 py-2 rounded-xl hover:bg-green-700 transition text-sm">
               Add to Cart
             </button>
           </div>

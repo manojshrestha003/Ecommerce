@@ -1,11 +1,14 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import all_product from '../assets/all_product';
+import { CartContext } from '../Context/CartContext';
+import { useContext } from 'react';
 
 const ProductDetails = () => {
   const { id } = useParams();
+  const {addToCart} = useContext(CartContext)
 
-  // Find the product with the matching id
+  
   const product = all_product.find(
     (item, index) => (item.id || index).toString() === id
   );
@@ -51,7 +54,7 @@ const ProductDetails = () => {
               </p>
             )}
             {/* Add to Cart Button */}
-            <button className="bg-green-600 text-white px-6 py-2 rounded-lg text-lg hover:bg-green-700 transition mb-4">
+            <button onClick={() => addToCart(product)} className="bg-green-600 text-white px-6 py-2 rounded-lg text-lg hover:bg-green-700 transition mb-4">
               Add to Cart
             </button>
             {/* Additional details can be added here */}

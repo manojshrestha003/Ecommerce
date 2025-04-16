@@ -10,29 +10,29 @@ import Footer from './components/Footer';
 import Login from './PAGES/Login';
 import Signup from './PAGES/Signup';
 import ProductDetails from './components/ProductDetails';
-
-
+import { CartProvider } from './Context/CartContext';
 
 function App() {
   return (
-    <div className="container mx-auto p-4">
-      <Navbar />
-    
-     
+    <CartProvider>
+      <div className="container mx-auto p-4">
+        <Navbar />
+        
+        {/* Main Content */}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/shop" element={<Shop />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/product/:id" element={<ProductDetails />} />
+        </Routes>
 
-      {/* Main Content */}
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/shop" element={<Shop />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/login" element={<Login/>} />
-        <Route path="/signup" element={<Signup/>} />
-        <Route path="/product/:id" element={<ProductDetails/>} />
-      </Routes>
-      <Footer/>
-    </div>
+        <Footer />
+      </div>
+    </CartProvider>
   );
 }
 

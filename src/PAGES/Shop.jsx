@@ -12,12 +12,10 @@ const Shop = () => {
 
   const handleLoadMore = () => {
     setIsLoading(true);
-
-  
     setTimeout(() => {
       setVisibleCount((prevCount) => Math.min(prevCount + 9, all_product.length));
       setIsLoading(false);
-    }, 2000); 
+    }, 2000);
   };
 
   return (
@@ -41,6 +39,7 @@ const Shop = () => {
 
             {/* Product Grid */}
             <section className="md:col-span-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {/* Render loaded products */}
               {all_product.slice(0, visibleCount).map((item, index) => (
                 <div
                   key={index}
@@ -61,53 +60,43 @@ const Shop = () => {
                         <p className="text-gray-400 line-through text-sm">NPR {item.old_price}</p>
                       </div>
                       <Link to={`/product/${item.id || index}`}>
-                      <button
-                        onClick={() => addToCart(item)}
-                        className="bg-green-600 text-white px-4 py-1 rounded-lg text-sm hover:bg-green-700 transition"
-                      >
-                       Buy now
-                      </button>
+                        <button
+                          onClick={() => addToCart(item)}
+                          className="bg-green-600 text-white px-4 py-1 rounded-lg text-sm hover:bg-green-700 transition"
+                        >
+                          Buy now
+                        </button>
                       </Link>
                     </div>
+                  </div>
+                </div>
+              ))}
+
+              {/* Skeleton loaders when fetching more */}
+              {isLoading && Array.from({ length: 9 }).map((_, i) => (
+                <div
+                  key={`skeleton-${i}`}
+                  className="bg-white rounded-2xl shadow-md animate-pulse"
+                >
+                  <div className="w-full h-60 bg-gray-200 rounded-t-2xl"></div>
+                  <div className="p-4 space-y-3">
+                    <div className="h-4 bg-gray-200 rounded w-3/4"></div>
+                    <div className="h-4 bg-gray-200 rounded w-1/2"></div>
                   </div>
                 </div>
               ))}
             </section>
           </div>
 
-          {/* Load More button with spinner */}
+          {/* Load More button */}
           <div className="flex justify-center mt-10">
-            {isLoading ? (
-            
-              <svg
-                className="animate-spin h-8 w-8 text-blue-600"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
+            {!isLoading && visibleCount < all_product.length && (
+              <button
+                onClick={handleLoadMore}
+                className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition"
               >
-                <circle
-                  className="opacity-25"
-                  cx="12"
-                  cy="12"
-                  r="10"
-                  stroke="currentColor"
-                  strokeWidth="4"
-                ></circle>
-                <path
-                  className="opacity-75"
-                  fill="currentColor"
-                  d="M4 12a8 8 0 018-8v8H4z"
-                ></path>
-              </svg>
-            ) : (
-              visibleCount < all_product.length && (
-                <button
-                  onClick={handleLoadMore}
-                  className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition"
-                >
-                  Load More
-                </button>
-              )
+                Load More
+              </button>
             )}
           </div>
         </div>

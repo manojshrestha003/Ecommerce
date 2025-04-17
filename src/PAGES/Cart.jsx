@@ -48,14 +48,14 @@ const Cart = () => {
                       </p>
                       <p className="text-gray-500">Quantity: {item.quantity}</p>
                     </td>
-                    {/* Calculated Price based on Quantity */}
+                    
                     <td className="p-4 text-right">
                       <p className="font-semibold text-lg">
-                        $
+                        NPR
                         {(parseFloat(item.new_price) * item.quantity).toFixed(2)}
                       </p>
                     </td>
-                    {/* Remove Button */}
+                 
                     <td className="p-4 text-right">
                       <button
                         onClick={() => removeFromCart(item.id)}
@@ -72,7 +72,7 @@ const Cart = () => {
             {/* Total Price & Checkout Button */}
             <div className="mt-6 text-right">
               <p className="text-xl font-semibold">
-                Total: ${totalPrice.toFixed(2)}
+                Total: NPR {totalPrice.toFixed(2)}
               </p>
               <button className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition mt-2">
                 Checkout

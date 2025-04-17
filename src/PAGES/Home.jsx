@@ -18,7 +18,7 @@ const Home = () => {
             <h2 className="text-4xl font-bold text-gray-800 mb-4">Discover the Best Deals</h2>
             <p className="text-gray-600 mb-6">Explore our wide range of products and enjoy exclusive discounts every day.</p>
              
-            <button  onClick={()=>{navigate('./Shop')}} className="bg-green-500 text-white px-6 py-2 rounded-xl hover:bg-green-700 transition">Shop Now</button>
+            <button  onClick={()=>{navigate('./shop')}} className="bg-green-500 text-white px-6 py-2 rounded-xl hover:bg-green-700 transition">Shop Now</button>
             
           </div>
           <div className="md:w-1/2">
@@ -30,11 +30,10 @@ const Home = () => {
       <div>
         <h1 className="text-3xl font-bold text-center mt-8">Welcome to EcomStore</h1>
         <p className="text-center text-gray-600 mt-4">Find the best products at unbeatable prices.</p>
-        <div className="flex justify-center mt-8">
-          <button className="bg-green-500 text-white px-6 py-2 rounded-xl hover:bg-green-700 transition">Shop Now</button>  
-          </div>
+       
         
       </div>
+      <h2 className="text-2xl font-bold text-center text-green-500 mt-8">Top Products</h2>
       <div className="flex flex-wrap gap-6 ml-10">
   {
     all_product.slice(0, 6).map((item, index) => (
@@ -55,8 +54,8 @@ const Home = () => {
           {/* Row with new price, old price, and button */}
           <div className="flex items-center justify-between mt-4">
             <div>
-              <p className="text-gray-600 font-semibold">${item.new_price}</p>
-              <p className="text-gray-400 line-through text-sm">${item.old_price}</p>
+              <p className="text-gray-600 font-semibold">NPR {item.new_price}</p>
+              <p className="text-gray-400 line-through text-sm">NPR{item.old_price}</p>
             </div>
             <Link to={`/product/${item.id || index}`}>
             <button  className="bg-green-500 text-white px-4 py-2 rounded-xl hover:bg-green-700 transition text-sm">

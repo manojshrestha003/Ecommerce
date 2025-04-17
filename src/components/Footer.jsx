@@ -46,7 +46,7 @@ const Footer = () => {
 
   {/* Footer bottom */}
   <div className="mt-10 border-t border-gray-700 pt-6 text-center text-sm text-gray-500">
-    &copy; {new Date().getFullYear()} ShopEase. All rights reserved.
+    &copy; {new Date().getFullYear()} EcomStore. All rights reserved.
   </div>
 </footer>
 
